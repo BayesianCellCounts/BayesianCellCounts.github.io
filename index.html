@@ -8,51 +8,90 @@
 <font face="verdana, Sans-serif">
 <head>
    <style>
-       .indent-block {
-           padding-left: 2em; /* indentation for blocks */
-       }
+       .indent-block { padding-left: 2em; }
+       code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
    </style>
   <title>Conor Houghton</title>
    <link rel="icon"  type="image/x-icon" href="https://conorhoughton.github.io/small_star.ico?">
 </head>
 
-
-<body  bgcolor=white link="slategrey" vlink="darkslategrey" alink="darkslategrey">
-
+<body bgcolor=white link="slategrey" vlink="darkslategrey" alink="darkslategrey">
 <table>
   <tbody>
     <tr>
       <td bgcolor="slategrey" width="30">&nbsp;</td>
-      
       <td bgcolor="darkslategrey" width="1">&nbsp;</td>
       <td bgcolor=white width="10">&nbsp;</td>
+      <td width="15"></td>
+      <td>
+        <h1 style="color: darkslategrey">Bayesian Cell Counts</h1>
 
-     <td width="15"> 
-<td>
-  <h1 style="color: darkslategrey">Bayesian Cell Counts</h1>
-    <h2 style="color: darkslategrey">Paper</h2>
-  <p>
-  <i>Hierarchical Bayesian modeling of multi-region brain cell count data.</i><br>
-  Sydney Dimmock, Benjamin M.S. Exley,  Gerald Moore, Lucy Menage,  Alessio Delogu,  Simon R Schultz,  E Clea Warburton,  Conor J Houghton and  Cian O'Donnell<br>
-(Reviewed preprint at eLife, 2024)<br>
-<a href="https://elifesciences.org/reviewed-preprints/102391">eLife reviewed preprint</a>,  <a href="https://www.biorxiv.org/content/10.1101/2024.07.20.603979v1">bioRxiv</a>, bioRxiv doi: <a href=" https://doi.org/10.1101/2024.07.20.603979">10.1101/2024.07.20.603979</a></p>
-  <h2 style="color: darkslategrey">Code</h2>
-<p><i>BayesianCellCounts/DimmockEtAl2025: Hierarchical Bayesian modeling of multi-region brain cell count data. (v1.01).</i><br>
+        <h2 style="color: darkslategrey">Paper</h2>
+        <p>
+          <i>Hierarchical Bayesian modeling of multi-region brain cell count data.</i><br>
+          Sydney Dimmock, Benjamin M.S. Exley,  Gerald Moore, Lucy Menage,  Alessio Delogu,  Simon R Schultz,  E Clea Warburton,  Conor J Houghton and  Cian O'Donnell<br>
+          (Reviewed preprint at eLife, 2024)<br>
+          <a href="https://elifesciences.org/reviewed-preprints/102391">eLife reviewed preprint</a>,
+          <a href="https://www.biorxiv.org/content/10.1101/2024.07.20.603979v1">bioRxiv</a>,
+          bioRxiv doi: <a href="https://doi.org/10.1101/2024.07.20.603979">10.1101/2024.07.20.603979</a>
+        </p>
 
-  Sydney Dimmock, Conor Houghton and Cian O'Donnell (2025),<br>
-  <a href="https://doi.org/10.5281/zenodo.16340993">doi.org/10.5281/zenodo.16340993</a></p>
-<h2 style="color: darkslategrey">Getting started</h2>
-  <p>The code is written in <span ttf>RStan</span>; this is the <span ttf>R</span> interface for the probabilistic programming language <span ttf>Stan</span> and instructions for installing it can be found at:</p>
-  <p><a href="https://mc-stan.org/rstan/">mc-stan.org/rstan/</a></p>
-  <p>The main point of caution is that you need <span ttf>C++</span> and associated tools installed first, the webpage has a "getting started" page that helps with this.</p>
-  <p><br></p>
-</td>
-</tr>
+        <h2 style="color: darkslategrey">Code</h2>
+        <p><i>BayesianCellCounts/DimmockEtAl2025: Hierarchical Bayesian modeling of multi-region brain cell count data. (v1.01).</i><br>
+          Sydney Dimmock, Conor Houghton and Cian O'Donnell (2025),<br>
+          <a href="https://doi.org/10.5281/zenodo.16340993">doi.org/10.5281/zenodo.16340993</a>
+        </p>
+        <p>This code uses two data sets:</p>
+        <ul>
+          <li>case study 1: <a href="https://zenodo.org/records/12787211">zenodo.org/records/12787211</a></li>
+          <li>case study 2: <a href="https://zenodo.org/records/12787287">zenodo.org/records/12787287</a></li>
+        </ul>
+
+        <h2 style="color: darkslategrey">Getting started</h2>
+
+        <!-- RStan note (existing) -->
+        <p>
+          The code is written for <span ttf>Stan</span> accessed from <span ttf>R</span>. You can use either
+          <span ttf>RStan</span> or <span ttf>CmdStanR</span>.
+        </p>
+        <div class="indent-block">
+          <p><b>RStan:</b> the classic R interface to Stan &mdash; install instructions:</p>
+          <p><a href="https://mc-stan.org/rstan/">mc-stan.org/rstan/</a></p>
+          <p>The main point of caution is that you need <span ttf>C++</span> and associated tools installed first; the RStan page has a
+             “getting started” guide that covers this.</p>
+        </div>
+
+        <!-- New CmdStanR block -->
+        <div class="indent-block">
+          <p><b>CmdStanR (recommended for new setups):</b> a lightweight R interface to Stan that compiles via CmdStan.
+             Start with the official “Getting started” guide and install CmdStan directly from R.</p>
+          <ul>
+            <li><a href="https://mc-stan.org/cmdstanr/">CmdStanR package site</a></li>
+            <li><a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html">Getting started with CmdStanR</a></li>
+            <li><a href="https://mc-stan.org/cmdstanr/reference/install_cmdstan.html"><code>install_cmdstan()</code> function reference</a></li>
+            <li><a href="https://mc-stan.org/docs/cmdstan-guide/installation.html">CmdStan installation guide (toolchain/conda)</a></li>
+            <li><a href="https://mc-stan.org/install/">Stan “Getting Started / Installation” overview</a></li>
+          </ul>
+
+          <p>Minimal install in R:</p>
+<pre><code># Install CmdStanR (from Stan's repo) and verify the toolchain
+install.packages("cmdstanr",
+                 repos = c("https://mc-stan.org/r-packages/", "https://cloud.r-project.org"))
+
+library(cmdstanr)
+check_cmdstan_toolchain()   # checks C++/make toolchain
+install_cmdstan()           # one-time: downloads & builds CmdStan
+cmdstan_version()
+</code></pre>
+
+          <p>If you already have a CmdStan installation, you can point CmdStanR to it with
+             <a href="https://mc-stan.org/cmdstanr/reference/set_cmdstan_path.html"><code>set_cmdstan_path()</code></a>.</p>
+        </div>
+
+        <p><br></p>
+      </td>
+    </tr>
   </tbody>
 </table>
 </body>
 </html>
-
-
-
-
