@@ -75,14 +75,25 @@
 	(animal,region); the preprocessing we have done includes a set
 	which sums over repeated counts and duplicates will cause an
 	error.</p>
-	<p>To run the code use:</p>
+	<p>To run the code use:
 	  <pre><code>
 	      Rscrips --vanilla sample_posterior.r
 	  </code></pre>
-	<p>This will sample the posterior using the model stored as <span ttf>model/model_hs.stan</stan>. This will produce four chains stored as <span ttf>fits/fit_hs.rds></span>.</p>
+	This will sample the posterior using the model stored as <span ttf>model/model_hs.stan</stan>. This will produce four chains stored as <span ttf>fits/fit_hs.rds</span>.</p>
+<p>The chains contain multiple samples from the posterior which allows
+probabalistics statements to be made about the model. Typically this means plotting graphs and most often these are `contrast' graphs, as in Figure 4B/4C in Dimmock et al. (2025). This graph is produced by the <span ttf>plot_results.r</span> and running:
+<pre><code>
+	      Rscrips --vanilla plot_results.r --help
+</code></pre>
+will give options; an example of this command for our sample data is
+<pre><code>
+Rscript plot_results.r Sham_Familiar Sham_Novel -o tabs
+</code></pre> This computes the contrast between two of our
+conditions, <span ttf>Sham_Familiar</span>
+and <span ttf>Sham_Novel</span> and orders the regions in the graph by
+the absolute value of the frequentist mean. This plotting only works
+if the chains are available; the graph is stored in <span ttf>results/</span>
 
-
-	
 
 	<h2 style="color: darkslategrey">RStan / CmdStanR</h2>
         <!-- RStan note (existing) -->
