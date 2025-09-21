@@ -48,7 +48,38 @@
         </ul>
 
         <h2 style="color: darkslategrey">Getting started</h2>
+	<p>We have provided an example of our analysis that is hopefully easy to translate to other examples. This is in:</p>
+	<p><a href="https://github.com/BayesianCellCounts/R_example">github.com/BayesianCellCounts/R_example</a></p>
+	<p>This contains an example data
+	file, <span ttf>data.csv</span>. This file is based on the one
+	used in the case study 1 but has been preprocessed, in case
+	study 1 some of the processing is performed by the R script,
+	here, to make the R script more generic, these steps are done
+	in advance, the details are given
+	in <span ttf>data.README</span>. The sample data includes 23 brain regions for 40 animals with 10 animals in each of four cohorts. The
+	  file <span ttf>data.csv</span> contains four columns:</p>
+	<ul>
+	  <li><span ttf>id</span> A unique identity number for each
+	  animal, in our case this is a number from 1 to 40;
+	    importantly the identity number is different for animals even if they could be distinguished by cohort.</li>
+	  <li><span ttf>region</span> This is the name of the different brain regions, a string in each case.</li>
+	  <li><span ttf>group</span> There are four groups, again, labelled by a string.</li>
+	  <li><span ttf>count</span> This is the cell count, in our
+	  case this is not an integer because we have normalization by
+	  area, often it will be an integer, the normalization was
+	  performed because the data included a quantification of the `useful portion' of the sample, but it is not required.</li>
+	</ul>
+	<p>Our dataset does not have a count for every (animal,region)
+	pair, there is missing data and this is allowed by the
+	model. However, it does not allow more than one count for each
+	(animal,region); the preprocessing we have done includes a set
+	which sums over repeated counts and duplicates will cause an
+	error.</p>
+	
 
+	
+
+	<h2 style="color: darkslategrey">RStan / CmdStanR</h2>
         <!-- RStan note (existing) -->
         <p>
           The code is written for <span ttf>Stan</span> accessed from <span ttf>R</span>. You can use either
