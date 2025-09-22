@@ -79,8 +79,8 @@ and adds the graphs in the <span ttf>diagnostics</span> folder.</p>
         <h3 style="color: darkslategrey">Stan model</h3>
 	<p>The <span ttf>Stan</span> model contains the priors. The business part is the line
 <pre><code>
-gamma[i] = theta[group_idx[i]] + tau[group_idx[i]] .* gamma_raw[i] .* kappa[i];
-</code></pre> In te the exponential of <span ttf>gamma[i]</span> is
+gamma[i] = theta[group_idx[i]] + kappa[i] .* tau[group_idx[i]] .* gamma_raw[i];
+</code></pre> the exponential of <span ttf>gamma[i]</span> is
 the mean of the Poisson process that generates the count for
 sample <span ttf>i</span>. The paper makes more of an attempt to
 describe this well and at length, but roughly and in short,
@@ -91,11 +91,9 @@ deals with variability around this value and includes the machinery of
 the horseshoe prior. The prior for <span ttf>theta</span> is provided by
 <pre><code>
 theta[g] ~ normal(5, 2);
-</code></pre> so exp(5)=<span>148.41</span> gives a
-rough <i>prior</i> value for the mean cell count for each region. If
-the cell counts differ significantly from this, it might be useful to
-change this value. In a similar way, the 2 is a guess as to the
-standard deviation of the log cell counts, if it is widely different from the empirical value it can be adjusted.</p>
+</code></pre>this implies that our rough <em>a priori</em> guess for the mean of the logged cell count values is 5, plus or minus 2. 
+If your log cell counts differ significantly from this, it might be useful to
+change these values before running the model on your data. A quick way to check this is to take the log of your cell counts and plot a histogram. </p>
 	<p><br></p>
       </td>
     </tr>
