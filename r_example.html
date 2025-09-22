@@ -25,7 +25,6 @@
       <td width="15"></td>
       <td>
         <h1 style="color: darkslategrey">Bayesian Cell Counts</h1>
-
         <h2 style="color: darkslategrey">R example</h2>
 	<p>We have provided an example of our analysis that is hopefully easy to translate to other examples. This is in:</p>
 	<p><a href="https://github.com/BayesianCellCounts/R_example">github.com/BayesianCellCounts/R_example</a></p>
@@ -77,7 +76,27 @@ if the chains are available; the graph is stored in <span ttf>results/</span>. A
 	      Rscrips plot_diagnostics.r --help
 </code></pre>
 and adds the graphs in the <span ttf>diagnostics</span> folder.</p>
-        <p><br></p>
+        <h3 style="color: darkslategrey">Stan model</h3>
+	<p>The <span ttf>Stan</span> model contains the priors. The business part is the line
+<pre><code>
+gamma[i] = theta[group_idx[i]] + tau[group_idx[i]] .* gamma_raw[i] .* kappa[i];
+</code></pre> In te the exponential of <span ttf>gamma[i]</span> is
+the mean of the Poisson process that generates the count for
+sample <span ttf>i</span>. The paper makes more of an attempt to
+describe this well and at length, but roughly and in short,
+the <span ttf>theta[group_idx[i[]</span> is the value
+that <span ttf>gamma[i]</span> is expected to take because of the
+cohort and region that sample comes from. The rest of the expression
+deals with variability around this value and includes the machinery of
+the horseshoe prior. The prior for <span ttf>theta</stan> is provided by
+<pre><code>
+theta[g] ~ normal(5, 2);
+</code></pre> so exp(5)=<span>&#8773;</span> gives a
+rough <i>prior</i> value for the mean cell count for each region. If
+the cell counts differ significantly from this, it might be useful to
+change this value. In a similar way, the 2 is a guess as to the
+standard deviation of the log cell counts, if it is widely different from the empirical value it can be adjusted.</p>
+	<p><br></p>
       </td>
     </tr>
   </tbody>
