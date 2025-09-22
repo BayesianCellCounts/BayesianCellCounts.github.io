@@ -1,0 +1,81 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<style>
+@font-face{font-family:MyTTF;src:url('/fonts/My.ttf') format('truetype');}
+[ttf]{font-family:'MyTTF';}
+</style>
+
+<html>
+<font face="verdana, Sans-serif">
+<head>
+   <style>
+       .indent-block { padding-left: 2em; }
+       code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+   </style>
+  <title>Bayesian Cell Counts</title>
+   <link rel="icon"  type="image/x-icon" href="https://conorhoughton.github.io/small_star.ico?">
+</head>
+
+<body bgcolor=white link="slategrey" vlink="darkslategrey" alink="darkslategrey">
+<table>
+  <tbody>
+    <tr>
+      <td bgcolor="slategrey" width="30">&nbsp;</td>
+      <td bgcolor="darkslategrey" width="1">&nbsp;</td>
+      <td bgcolor=white width="10">&nbsp;</td>
+      <td width="15"></td>
+      <td>
+        <h1 style="color: darkslategrey">Bayesian Cell Counts</h1>
+
+        <h2 style="color: darkslategrey">R example</h2>
+	<p>We have provided an example of our analysis that is hopefully easy to translate to other examples. This is in:</p>
+	<p><a href="https://github.com/BayesianCellCounts/R_example">github.com/BayesianCellCounts/R_example</a></p>
+	<p>This contains an example data
+	file, <span ttf>data.csv</span>. This file is based on the one
+	used in the case study 1 but has been preprocessed, in case
+	study 1 some of the processing is performed by the R script,
+	here, to make the R script more generic, these steps are done
+	in advance, the details are given
+	in <span ttf>data.README</span>. The sample data includes 23 brain regions for 40 animals with 10 animals in each of four cohorts. The
+	  file <span ttf>data.csv</span> contains four columns:</p>
+	<ul>
+	  <li><span ttf>id</span> A unique identity number for each
+	  animal, in our case this is a number from 1 to 40;
+	    importantly the identity number is different for animals even if they could be distinguished by cohort.</li>
+	  <li><span ttf>region</span> This is the name of the different brain regions, a string in each case.</li>
+	  <li><span ttf>group</span> There are four groups, again, labelled by a string.</li>
+	  <li><span ttf>count</span> This is the cell count, in our
+	  case this is not an integer because we have normalization by
+	  area, often it will be an integer, the normalization was
+	  performed because the data included a quantification of the `useful portion' of the sample, but it is not required.</li>
+	</ul>
+	<p>Our dataset does not have a count for every (animal,region)
+	pair, there is missing data and this is allowed by the
+	model. However, it does not allow more than one count for each
+	(animal,region); the preprocessing we have done includes a set
+	which sums over repeated counts and duplicates will cause an
+	error.</p>
+	<p>To run the code use:
+	  <pre><code>
+	      Rscrips --vanilla sample_posterior.r
+	  </code></pre>
+	This will sample the posterior using the model stored as <span ttf>model/model_hs.stan</span>. This will produce four chains stored as <span ttf>fits/fit_hs.rds</span>.</p>
+<p>The chains contain multiple samples from the posterior which allows
+probabalistics statements to be made about the model. Typically this means plotting graphs and most often these are `contrast' graphs, as in Figure 4B/4C in Dimmock et al. (2025). This graph is produced by the <span ttf>plot_results.r</span> and running:
+<pre><code>
+	      Rscrips --vanilla plot_results.r --help
+</code></pre>
+will give options; an example of this command for our sample data is
+<pre><code>
+              Rscript plot_results.r Sham_Familiar Sham_Novel -o tabs
+</code></pre> This computes the contrast between two of our
+conditions, <span ttf>Sham_Familiar</span>
+and <span ttf>Sham_Novel</span> and orders the regions in the graph by
+the absolute value of the frequentist mean. This plotting only works
+if the chains are available; the graph is stored in <span ttf>results/</span>. As described under <span ttf>--help</span> there is an option for changing the format of the output file, this probably works but we have only actually tests png and pdf.</p>
+        <p><br></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
