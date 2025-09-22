@@ -56,13 +56,13 @@
 	error.</p>
 	<p>To run the code use:
 	  <pre><code>
-	      Rscrips --vanilla sample_posterior.r
+	      Rscrips sample_posterior.r
 	  </code></pre>
 	This will sample the posterior using the model stored as <span ttf>model/model_hs.stan</span>. This will produce four chains stored as <span ttf>fits/fit_hs.rds</span>.</p>
 <p>The chains contain multiple samples from the posterior which allows
 probabalistics statements to be made about the model. Typically this means plotting graphs and most often these are `contrast' graphs, as in Figure 4B/4C in Dimmock et al. (2025). This graph is produced by the <span ttf>plot_results.r</span> and running:
 <pre><code>
-	      Rscrips --vanilla plot_results.r --help
+	      Rscrips plot_results.r --help
 </code></pre>
 will give options; an example of this command for our sample data is
 <pre><code>
@@ -72,6 +72,11 @@ conditions, <span ttf>Sham_Familiar</span>
 and <span ttf>Sham_Novel</span> and orders the regions in the graph by
 the absolute value of the frequentist mean. This plotting only works
 if the chains are available; the graph is stored in <span ttf>results/</span>. As described under <span ttf>--help</span> there is an option for changing the format of the output file, this probably works but we have only actually tests png and pdf.</p>
+	<p>To produce the diagnostic plots use <span ttf>plot_diagnostics.r</span>, this has a help file accessed as
+<pre><code>
+	      Rscrips plot_diagnostics.r --help
+</code></pre>
+and adds the graphs in the <span ttf>diagnostics</span> folder.</p>
         <p><br></p>
       </td>
     </tr>
