@@ -15,17 +15,17 @@
    <link rel="icon"  type="image/x-icon" href="https://conorhoughton.github.io/small_star.ico?">
 </head>
 
-<body bgcolor=white link="slategrey" vlink="darkslategrey" alink="darkslategrey">
+<body bgcolor=white link="orange" vlink="darkorange" alink="darkorange">
 <table>
   <tbody>
     <tr>
-      <td bgcolor="slategrey" width="30">&nbsp;</td>
-      <td bgcolor="darkslategrey" width="1">&nbsp;</td>
+      <td bgcolor="orange" width="30">&nbsp;</td>
+      <td bgcolor="darkorange" width="1">&nbsp;</td>
       <td bgcolor=white width="10">&nbsp;</td>
       <td width="15"></td>
       <td>
-        <h1 style="color: darkslategrey">Bayesian Cell Counts</h1>
-        <h2 style="color: darkslategrey">R example</h2>
+        <h1 style="color: darkorange">Bayesian Cell Counts</h1>
+        <h2 style="color: darkorange">R example</h2>
 	<p>We have provided an example of our analysis that is hopefully easy to translate to other examples. This is in:</p>
 	<p><a href="https://github.com/BayesianCellCounts/R_example">github.com/BayesianCellCounts/R_example</a></p>
 	<p>This contains an example data
@@ -76,7 +76,7 @@ if the chains are available; the graph is stored in <span ttf>results/</span>. A
 	      Rscript plot_diagnostics.r --help
 </code></pre>
 and adds the graphs in the <span ttf>diagnostics</span> folder.</p>
-        <h3 style="color: darkslategrey">Stan model</h3>
+        <h3 style="color: darkorange">Stan model</h3>
 	<p>The <span ttf>Stan</span> model contains the priors. The business part is the line
 <pre><code>
 gamma[i] = theta[group_idx[i]] + kappa[i] .* tau[group_idx[i]] .* gamma_raw[i];
